@@ -41,7 +41,17 @@ class Serie(Programa):
         return f'{self.nome} - {self.ano} - {self.temporada} temporadas - {self.likes} Likes'
 
 
-class Playlist(list):
+class Playlist:
     def __init__(self, nome, programas):
         self.nome = nome
-        super().__init__(programas)
+        self._programas = programas
+
+    def __getitem__(self, item):
+        return self._programas[item]
+
+    @property
+    def listagem(self):
+        return self._programas
+
+    def __len__(self):
+        return len(self._programas)
